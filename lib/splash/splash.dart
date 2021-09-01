@@ -10,7 +10,6 @@ import 'package:aqi/login/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
-
 class Splash extends StatefulWidget {
   static const id = 'splash';
 
@@ -19,8 +18,8 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  tokenExpire()async{
-    Timer(Duration(seconds: 3), () async{
+  tokenExpire() async {
+    Timer(Duration(seconds: 3), () async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var token = prefs.getString('token');
       bool hasExpired = true;
@@ -38,8 +37,10 @@ class _SplashState extends State<Splash> {
           context,
           MaterialPageRoute(builder: (context) => Login()),
         );
-      }    });
+      }
+    });
   }
+
   @override
   void initState() {
     tokenExpire();
@@ -48,16 +49,17 @@ class _SplashState extends State<Splash> {
 
   @override
   Widget build(BuildContext context) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          //backgroundColor: Image.asset('images/background.jpg').color,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        //backgroundColor: Image.asset('images/background.jpg').color,
         //backgroundColor: AppConsts.primaryColor,
         body: Container(
           decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/images/background.jpg'),fit: BoxFit.cover),
+            image: DecorationImage(
+                image: AssetImage('assets/images/background.jpg'),
+                fit: BoxFit.cover),
             color: AppConsts.primaryColor,
-
           ),
           child: Center(
             child: Column(
@@ -74,6 +76,9 @@ class _SplashState extends State<Splash> {
                     width: deviceWidth(context) * 0.4,
                   ),
                 ),
+                SizedBox(
+                  height: 10.0,
+                ),
                 DelayedDisplay(
                   fadingDuration: Duration(milliseconds: 1800),
                   slidingBeginOffset: Offset(0, 1.2),
@@ -87,8 +92,7 @@ class _SplashState extends State<Splash> {
             ),
           ),
         ),
-    ),
-      );
+      ),
+    );
   }
-
 }
